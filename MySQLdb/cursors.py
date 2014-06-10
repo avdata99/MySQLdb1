@@ -184,6 +184,8 @@ class BaseCursor(object):
                 query = query % dict((key, db.literal(item))
                                      for key, item in args.iteritems())
             else:
+                if isinstance(args, basestring):
+                    args = [args]
                 query = query % tuple([db.literal(item) for item in args])
         try:
             r = None
